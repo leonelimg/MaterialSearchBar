@@ -496,13 +496,17 @@ public class MaterialSearchBar extends FrameLayout implements View.OnClickListen
             return;
         findViewById(R.id.mt_divider).setVisibility(to > 0 ? View.VISIBLE : View.GONE);
 
+        if (to > maxsuggestionhight) {
+            to=maxsuggestionhight;
+        }
+
         ValueAnimator animator = ValueAnimator.ofInt(from, to);
         animator.setDuration(animationspeed);
         animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
                 int animatedvalue = (int) animation.getAnimatedValue();
-                if (animatedvalue > maxsuggestionhight) {
+                if (animatedvalue >= maxsuggestionhight) {
                     //lp.height = adapter.getListHeight();
                     lp.height = maxsuggestionhight;
                 }else {
