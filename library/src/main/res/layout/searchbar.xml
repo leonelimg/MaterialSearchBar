@@ -7,8 +7,9 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/mt_container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_centerHorizontal="true"
+        android:maxHeight="50dp"
         app:cardBackgroundColor="@color/searchBarPrimaryColor"
         app:cardCornerRadius="2dp"
         app:cardElevation="2dp"
@@ -42,7 +43,6 @@
                 android:maxLines="1"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="@color/searchBarPlaceholderColor"
-                android:textStyle="bold"
                 android:visibility="visible"
                 app:layout_constraintEnd_toStartOf="@id/mt_search"
                 app:layout_constraintStart_toEndOf="@+id/mt_nav"
@@ -115,6 +115,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="48dp"
+                android:maxHeight="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -129,7 +130,8 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/mt_recycler"
                     android:layout_width="match_parent"
-                    android:layout_height="0dp" />
+                    android:layout_height="0dp"
+                    android:scrollbars="vertical" />
 
             </RelativeLayout>
 

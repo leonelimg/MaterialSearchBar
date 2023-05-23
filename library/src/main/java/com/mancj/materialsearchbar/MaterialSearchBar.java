@@ -108,6 +108,17 @@ public class MaterialSearchBar extends FrameLayout implements View.OnClickListen
     private int textCursorColor;
     private int highlightedTextColor;
 
+    private int animationspeed;
+    private int maxsuggestionhight;
+
+    public void setAnimationSpeed(int animationspeed) {
+        this.animationspeed = animationspeed;
+    }
+
+    public void setMaxSuggestionHight(int maxsuggestionhight) {
+        this.maxsuggestionhight = maxsuggestionhight;
+    }
+
     public MaterialSearchBar(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(attrs);
@@ -136,6 +147,8 @@ public class MaterialSearchBar extends FrameLayout implements View.OnClickListen
         roundedSearchBarEnabled = array.getBoolean(R.styleable.MaterialSearchBar_mt_roundedSearchBarEnabled, false);
         dividerColor = array.getColor(R.styleable.MaterialSearchBar_mt_dividerColor, ContextCompat.getColor(getContext(), R.color.searchBarDividerColor));
         searchBarColor = array.getColor(R.styleable.MaterialSearchBar_mt_searchBarColor, ContextCompat.getColor(getContext(), R.color.searchBarPrimaryColor));
+        maxsuggestionhight = 580;
+        animationspeed = 200;
 
         //Icon Related Attributes
         menuIconRes = array.getResourceId(R.styleable.MaterialSearchBar_mt_menuIconDrawable, R.drawable.ic_dots_vertical_black_48dp);
@@ -484,11 +497,17 @@ public class MaterialSearchBar extends FrameLayout implements View.OnClickListen
         findViewById(R.id.mt_divider).setVisibility(to > 0 ? View.VISIBLE : View.GONE);
 
         ValueAnimator animator = ValueAnimator.ofInt(from, to);
-        animator.setDuration(1200);
+        animator.setDuration(animationspeed);
         animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
-                lp.height = (int) animation.getAnimatedValue();
+                int animatedvalue = (int) animation.getAnimatedValue();
+                if (animatedvalue > maxsuggestionhight) {
+                    //lp.height = adapter.getListHeight();
+                    lp.height = maxsuggestionhight;
+                }else {
+                    lp.height = animatedvalue;
+                }
                 suggestionsList.setLayoutParams(lp);
             }
         });
