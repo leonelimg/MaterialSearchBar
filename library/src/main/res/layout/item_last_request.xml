@@ -26,10 +26,10 @@
 
     <ImageView
         android:id="@+id/iv_delete"
-        android:tint="@color/material_grey_600"
-        android:src="@drawable/ic_close_black_48dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:background="?attr/selectableItemBackground"
         android:padding="13dp"
-        android:layout_width="50dp"
-        android:layout_height="50dp" />
+        android:src="@drawable/outline_edit_24"
+        android:tint="@color/material_grey_600" />
 </LinearLayout>
